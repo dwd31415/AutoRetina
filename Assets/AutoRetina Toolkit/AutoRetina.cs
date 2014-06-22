@@ -2,9 +2,12 @@
 using System.Collections;
 
 public class AutoRetina{
-
+	static Resolution stdResolution;
 	public static void AutoSwitchResolution(iPhoneGeneration[] nonRetinaDevices)
 	{
+		if (stdResolution.width == 0) {
+			stdResolution=Screen.currentResolution;
+		}
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 						foreach (iPhoneGeneration generation in nonRetinaDevices) {
 								if (iPhone.generation == generation) {
@@ -17,11 +20,14 @@ public class AutoRetina{
 										}
 								}
 						}
-						Screen.SetResolution (Screen.resolutions[Screen.resolutions.Length-1].width,Screen.resolutions[Screen.resolutions.Length-1].height ,true);
-			}
+						Screen.SetResolution (stdResolution.width,stdResolution.height ,true);
+		}
 	}
 	public static void AutoSwitchResolution(int minRetinaGraphicsMemory)
 	{
+		if (stdResolution.width == 0) {
+			stdResolution=Screen.currentResolution;
+		}
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 						if (SystemInfo.graphicsMemorySize < minRetinaGraphicsMemory) {
 								if(Screen.width == RetinaResolutions.iPadRetina.x || Screen.width==RetinaResolutions.iPadRetina.y) {
@@ -32,12 +38,15 @@ public class AutoRetina{
 
 						}
 						else{
-								Screen.SetResolution (Screen.resolutions[Screen.resolutions.Length-1].width,Screen.resolutions[Screen.resolutions.Length-1].height ,true);
+								Screen.SetResolution (stdResolution.width,stdResolution.height ,true);
 						}
 		}
 	}
 	public static void AutoSwitchResolution(AppleGPUS minRetinaGPU)
 	{
+		if (stdResolution.width==0) {
+			stdResolution=Screen.currentResolution;
+		}
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			if (AppleGPUHelper.DetectGPU() < minRetinaGPU) {
 				if (Screen.width == RetinaResolutions.iPadRetina.x || Screen.width==RetinaResolutions.iPadRetina.y) {
@@ -47,7 +56,7 @@ public class AutoRetina{
 				}
 			}
 			if (AppleGPUHelper.DetectGPU() >= minRetinaGPU) {
-				Screen.SetResolution (Screen.resolutions[Screen.resolutions.Length-1].width,Screen.resolutions[Screen.resolutions.Length-1].height ,true);
+				Screen.SetResolution (stdResolution.width,stdResolution.height ,true);
 			}
 		}
 	}
