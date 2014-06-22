@@ -33,7 +33,7 @@ public class AutoRetina{
 	public static void AutoSwitchResolution(AppleGPUS minRetinaGPU)
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
-			if () {
+			if (AppleGPUHelper.DetectGPU() < minRetinaGPU) {
 				if (Screen.width == (RetinaResolutions.iPadRetina.x | RetinaResolutions.iPadRetina.y)) {
 					Screen.SetResolution (1024, 768);	
 				} else {
