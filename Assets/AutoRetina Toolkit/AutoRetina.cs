@@ -30,8 +30,19 @@ public class AutoRetina{
 						}
 				}
 	}
-
-
+	public static void AutoSwitchResolution(AppleGPUS minRetinaGPU)
+	{
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			if () {
+				if (Screen.width == (RetinaResolutions.iPadRetina.x | RetinaResolutions.iPadRetina.y)) {
+					Screen.SetResolution (1024, 768);	
+				} else {
+					Screen.SetResolution (480, 320);
+				}
+				
+			}
+		}
+	}
 
 
 }
