@@ -8,10 +8,10 @@ public class AutoRetina{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 						foreach (iPhoneGeneration generation in nonRetinaDevices) {
 								if (iPhone.generation == generation) {
-										if (Screen.width == (RetinaResolutions.iPadRetina.x | RetinaResolutions.iPadRetina.y)) {
-												Screen.SetResolution (1024, 768);	
+									if (Screen.width == RetinaResolutions.iPadRetina.x || Screen.width==RetinaResolutions.iPadRetina.y)  {
+												Screen.SetResolution (1024, 768,true);	
 										} else {
-												Screen.SetResolution (480, 320);
+												Screen.SetResolution (480, 320,true);
 										}
 								}
 						}
@@ -21,10 +21,10 @@ public class AutoRetina{
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 						if (SystemInfo.graphicsMemorySize < minRetinaGraphicsMemory) {
-								if (Screen.width == (RetinaResolutions.iPadRetina.x | RetinaResolutions.iPadRetina.y)) {
-										Screen.SetResolution (1024, 768);	
+								if(Screen.width == RetinaResolutions.iPadRetina.x || Screen.width==RetinaResolutions.iPadRetina.y) {
+										Screen.SetResolution (1024, 768,true);	
 								} else {
-										Screen.SetResolution (480, 320);
+										Screen.SetResolution (480, 320,true);
 								}
 
 						}
@@ -34,12 +34,11 @@ public class AutoRetina{
 	{
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			if (AppleGPUHelper.DetectGPU() < minRetinaGPU) {
-				if (Screen.width == (RetinaResolutions.iPadRetina.x | RetinaResolutions.iPadRetina.y)) {
-					Screen.SetResolution (1024, 768);	
+				if (Screen.width == RetinaResolutions.iPadRetina.x || Screen.width==RetinaResolutions.iPadRetina.y) {
+					Screen.SetResolution (1024, 768,true);	
 				} else {
-					Screen.SetResolution (480, 320);
+					Screen.SetResolution (480, 320,true);
 				}
-				
 			}
 		}
 	}
